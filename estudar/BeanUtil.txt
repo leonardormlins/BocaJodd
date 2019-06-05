@@ -1,0 +1,70 @@
+
+Tópicos importantes:
+
+Reflexão de código ->  é a capacidade de um programa observar ou até mesmo modificar sua estrutura ou comportamento.
+
+Introspecção de código -> é a habilidade de um programa de examinar o tipo ou propriedades de um objeto em tempo de execução.
+
+
+** BeanUtil se fundamenta através destas capacidades, para conseguir, por exemplo, acessar o conteúdo de uma classe em tempo de execução.
+-------------------
+
+bean -> definição de uma classe com atributos private e getter and setter, por exemplo 
+
+BeanUtil -> É uma interface que permite manipular beans, como por exemplo setar e ler métodos/atributos ou até mesmo properties. 	(Motivações: facilitar a modificação e leitura de informações de uma classe; trabalha com atributos e propriedades; contempla um poderoso e "simples" conversor de tipo)
+	(OBS: A ideia de utilizar beanUtil pode atrapalhar no desempenho da aplicação, haja vista que contará com ainda mais tarefas rodando por trás, porém em uma comparação trazida na documentação de Jodd mostra que a modificação trazida do beanUtil neste framework fica em torno de 20% mais performática).
+
+BeanUtilBean -> É a classe que contém toda a lógica da parada, permitindo ao desenvolvedor criar variantes BeanUtil, por exemplo.
+
+<tabelaFlavors>
+
+exemplos de utilização: 
+
+#ex1:
+---------------------------------------------------------------
+public class Foo {
+        private String readwrite;   
+        private String readonly;    
+        ...
+    }
+
+ Foo foo = new Foo();
+ BeanUtil.pojo.setProperty(foo, "readwrite", "data"); //*A
+ BeanUtil.pojo.getProperty(foo, "readwrite");         //*B
+
+/*
+	*A -> Insere valor "data" para o atributo "readwrite"
+	*B -> Retorna o valor do atributo "readwrite"
+*/
+----------------------------------------------------------------
+
+#ex2:
+---------------------------------------------------------------
+BeanUtil.pojo.hasProperty(fb, "fooInteger") //*A
+
+/*
+	*A -> Valida se o objeto tem o atributo fooInteger
+*/
+----------------------------------------------------------------
+
+#ex3:
+-----------------------------------------------------------------------------------
+public boolean getBoolean(Object bean, String param, boolean defaultValue) {
+        Boolean booleanValue = null;
+        if (bean != null) {
+            Object value = BeanUtil.pojo.getProperty(bean, param);
+            beanValue = TypeConverterManager.convertType(value, Boolean.class);
+        } catch (Exception ex) {
+            // log error
+        }
+        if (booleanValue == null) {
+            return defaultValue;
+        } else {
+            return booleanValue.booleanValue();
+        }
+    }
+/*
+	Código exemplo trabalha na conversão de tipo de objetos, acesso e definição 
+de seus valores. 
+*/
+------------------------------------------------------------------------------------
