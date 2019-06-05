@@ -1,2 +1,3 @@
-# BocaJodd
-Trabalho final de LP II
+# Jodd tutorial
+
+See: [joddframework.org](http://joddframework.org).
