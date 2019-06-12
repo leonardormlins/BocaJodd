@@ -1,0 +1,18 @@
+# database
+jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306/jodd-tutorial?useSSL=false
+jdbc.username=root
+jdbc.password=root!
+
+# db pool
+joy.db.pool.driver=${jdbc.driverClassName}
+joy.db.pool.url=${jdbc.url}
+joy.db.pool.user=${jdbc.username}
+joy.db.pool.password=${jdbc.password}
+joy.db.pool.maxConnections=50
+joy.db.pool.minConnections=5
+joy.db.pool.waitIfBusy=true
+
+# db settings
+joy.db.query.debug=true
+joy.db.oom.tableNames.prefix=jd_
